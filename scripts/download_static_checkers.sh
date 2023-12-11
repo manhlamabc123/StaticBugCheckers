@@ -27,8 +27,8 @@ INF_VER="0.15.0"
 
 
 # This is the SpotBugs release used for the study.
-SB_VER="3.1.0"
-SB_URL="http://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/${SB_VER}/spotbugs-${SB_VER}.tgz"
+SB_VER="4.8.2"
+SB_URL="https://github.com/spotbugs/spotbugs/releases/download/$SB_VER/spotbugs-$SB_VER.tgz"
 # NOTE: SB_BIN=SB_ROOT/lib/spotbugs.jar
 
 if [ -d ${CHECKERS_ROOT} ]; then rm -rf ${CHECKERS_ROOT}; fi
@@ -57,4 +57,7 @@ else
 fi
 
 echo ">>> Preparing SpotBugs"
-wget -cq $SB_URL -O - | tar -xz -C $CHECKERS_ROOT
+cd $CHECKERS_ROOT
+curl -O -L $SB_URL
+tar -xzvf spotbugs-$SB_VER.tgz
+rm spotbugs-$SB_VER.tgz
