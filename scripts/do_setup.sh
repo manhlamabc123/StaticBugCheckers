@@ -10,19 +10,11 @@ echo "**************************************************************************
 echo "Running the study of static bug checkers and their effectiveness by Habib and Pradel [ASE2018]"
 echo "**********************************************************************************************"
 
-bash ./scripts/run_checkers_on_defects4j.sh
+bash ./scripts/download_static_checkers.sh
 
-bash ./scripts/prepare_checkers_output.sh
-
-bash ./scripts/execute_diff_based_approach.sh
-
-bash ./scripts/execute_warnings_based_approach.sh
+bash ./scripts/download_defects4j.sh
 
 echo
 echo "*************************"
-echo "Done performing the study"
+echo "Done performing the setup"
 echo "*************************"
-echo
-echo "Check the results in:"
-echo $STUDY_ROOT
-echo

@@ -9,11 +9,8 @@ Created on Dec. 15, 2017
 import os
 import subprocess
 import sys
-
 from joblib import Parallel, delayed
-
 from Util import prepare_tool
-
 
 def run_ep_on_proj(proj, path, path_out, path_ep):
     log = open(os.path.join(os.getcwd(), 'ep_log'), 'a')
@@ -44,7 +41,6 @@ def run_ep_on_proj(proj, path, path_out, path_ep):
 
     log.write("#"*212 + "\n\n")
     log.close()
-        
 
 if __name__ == '__main__':
     path_ep = os.path.join(os.getcwd(), sys.argv[1])
