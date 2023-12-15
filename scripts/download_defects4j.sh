@@ -25,11 +25,7 @@ echo ">>> Checking out buggy versions to:"
 python3 ${PY_SCRIPTS_ROOT}/CheckoutD4j.py ${D4J_ROOT} b
 echo
 
-# # Run a Python script to check out fixed versions using Defects4J
-# echo ">>> Checking out fixed versions to:"
-# python3 ${PY_SCRIPTS_ROOT}/CheckoutD4j.py ${D4J_ROOT} f
-# echo
-
-# Hack to force compiling all d4j projects
-#python3 ${PY_SCRIPTS_ROOT}/TryAllCompileD4J.py ${D4J_ROOT}/b $JOBS
-#python3 ${PY_SCRIPTS_ROOT}/TryAllCompileD4J.py ${D4J_ROOT}/f $JOBS
+# Run a Python script to check out fixed versions using Defects4J
+echo ">>> Checking out fixed versions to:"
+python3 ${PY_SCRIPTS_ROOT}/CheckoutD4j.py ${D4J_ROOT} f
+echo
