@@ -6,10 +6,7 @@ Created on Dec. 15, 2017
 
 '''
 
-import os
-import subprocess
-import sys
-from joblib import Parallel, delayed
+import os, subprocess, sys
 from Util import prepare_tool
 
 def run_ep_on_proj(proj, path, path_out, path_ep):
@@ -45,7 +42,6 @@ def run_ep_on_proj(proj, path, path_out, path_ep):
 if __name__ == '__main__':
     path_ep = os.path.join(os.getcwd(), sys.argv[1])
     path_d4j_projects = os.path.join(os.getcwd(), sys.argv[2])
-    jobs = int(sys.argv[3])
     
     path_out = os.path.join(os.getcwd(), 'ep_output')
     if not os.path.isdir(path_out):
@@ -62,6 +58,5 @@ if __name__ == '__main__':
     if is_filter:
         projects = sorted(list(i for i in projects if i in filter_list))
         
-    Parallel(n_jobs=jobs)(delayed(run_ep_on_proj)
-                          (p, path_d4j_projects, path_out, path_ep)
-                          for p in projects)
+    for p in projects:
+        run_ep_on_proj(p, path_d4j_projects, path_out, path_ep)

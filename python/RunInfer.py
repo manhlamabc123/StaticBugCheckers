@@ -6,16 +6,8 @@ Created on Dec. 25, 2017
 
 '''
 
-import os
-import shutil
-import subprocess
-import sys
-import tempfile
-
-from joblib import Parallel, delayed
-
+import os, shutil, subprocess, sys, tempfile
 from Util import prepare_tool
-
 
 def run_infer_on_proj(proj, path, path_out_txt, path_out_json, path_infer):
     log = open(os.path.join(os.getcwd(), 'inf_log'), 'a')
@@ -67,7 +59,6 @@ def run_infer_on_proj(proj, path, path_out_txt, path_out_json, path_infer):
     log.write("#"*212 + "\n\n")
     log.close()
 
-    
 def manual_merge_json(json_strings):
     json_strings = [x for x in json_strings if x != "" and x != '[]']
     length = len(json_strings)
@@ -84,11 +75,9 @@ def manual_merge_json(json_strings):
     
     return ""
         
-
 if __name__ == '__main__':
     path_infer = os.path.join(os.getcwd(), sys.argv[1])
     path_d4j_projects = os.path.join(os.getcwd(), sys.argv[2])
-    jobs = int(sys.argv[3])
     
     path_out_txt = os.path.join(os.getcwd(), 'inf_output_txt')
     if not os.path.isdir(path_out_txt):
@@ -108,8 +97,7 @@ if __name__ == '__main__':
             filter_list = file.read().splitlines()
     if is_filter:
         projects = sorted(list(i for i in projects if i in filter_list))
-   
-    Parallel(n_jobs=jobs)(delayed(run_infer_on_proj)
-                          (p, path_d4j_projects, path_out_txt, path_out_json, path_infer)
-                          for p in projects)
+        
+    for p in projects:
+        run_infer_on_proj(p, path_d4j_projects, path_out_txt, path_out_json, path_infer)
     
