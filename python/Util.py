@@ -379,16 +379,23 @@ def get_cls_name_from_file_path(cls_path):
 def prepare_tool(path, proj):
         
     proj_dir = os.path.join(path, proj)
-    
-    with open(os.path.join(proj_dir, 'prop-source-dir')) as file:
-        proj_src = file.read()
-    proj_src = os.path.join(proj_dir, proj_src)
-    
-    with open(os.path.join(proj_dir, 'prop-compile-path')) as file:
-        proj_cp = file.read()
-    
-    with open(os.path.join(proj_dir, 'prop-buggy-classes')) as file:
-        proj_buggy_classes = file.read().splitlines()
+
+    try:
+        with open(os.path.join(proj_dir, 'prop-source-dir')) as file:
+            proj_src = file.read()
+        proj_src = os.path.join(proj_dir, proj_src)
+        
+        with open(os.path.join(proj_dir, 'prop-compile-path')) as file:
+            proj_cp = file.read()
+        
+        with open(os.path.join(proj_dir, 'prop-buggy-classes')) as file:
+            proj_buggy_classes = file.read().splitlines()
+    except Exception as e:
+        ic(proj_dir)
+        ic(e)
+        proj_src = ''
+        proj_cp = ''
+        proj_buggy_classes = []
     
     try:
         with open(os.path.join(proj_dir, 'prop-exclude-classes')) as file:
