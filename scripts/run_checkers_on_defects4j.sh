@@ -20,24 +20,29 @@ SB_BIN="$(get_abs_path `find ${CHECKERS_ROOT} -maxdepth 1 -type d -name spotbugs
 if [ -d ${STUDY_ROOT} ]; then rm -rf ${STUDY_ROOT}; fi
 mkdir -p $OUT_BUGGY && mkdir -p $OUT_FIXED
 
-echo
 echo ">>> Running the static checkers on the buggy versions from the Defects4j <<<"
 cd $OUT_BUGGY
 
 # Run Error Prone on buggy versions
-echo ">>> Running Error Prone" && python3 ${PY_SCRIPTS_ROOT}/RunErrorprone.py ${EP_BIN} ${D4J_BUGGY} $JOBS
+echo ">>> Running Error Prone" && python3 ${PY_SCRIPTS_ROOT}/RunErrorprone.py ${EP_BIN} ${D4J_BUGGY}
+echo ">>> Done"
 # Run Infer on buggy versions
-echo ">>> Running Infer" && python3 ${PY_SCRIPTS_ROOT}/RunInfer.py ${INF_BIN} ${D4J_BUGGY} $JOBS
+echo ">>> Running Infer" && python3 ${PY_SCRIPTS_ROOT}/RunInfer.py ${INF_BIN} ${D4J_BUGGY}
+echo ">>> Done"
 # Run SpotBugs on buggy versions
-echo ">>> Running SpotBugs" && python3 ${PY_SCRIPTS_ROOT}/RunSpotbugs.py ${SB_BIN} ${D4J_BUGGY} $JOBS
+echo ">>> Running SpotBugs" && python3 ${PY_SCRIPTS_ROOT}/RunSpotbugs.py ${SB_BIN} ${D4J_BUGGY}
+echo ">>> Done"
 
 echo
 echo ">>> Running the static checkers on the fixed versions from the Defects4j <<<"
 cd $OUT_FIXED
 
 # Run Error Prone on fixed versions
-echo ">>> Running Error Prone" && python3 ${PY_SCRIPTS_ROOT}/RunErrorprone.py ${EP_BIN} ${D4J_FIXED} $JOBS
+echo ">>> Running Error Prone" && python3 ${PY_SCRIPTS_ROOT}/RunErrorprone.py ${EP_BIN} ${D4J_FIXED}
+echo ">>> Done"
 # Run Infer on fixed versions
-echo ">>> Running Infer" && python3 ${PY_SCRIPTS_ROOT}/RunInfer.py ${INF_BIN} ${D4J_FIXED} $JOBS
+echo ">>> Running Infer" && python3 ${PY_SCRIPTS_ROOT}/RunInfer.py ${INF_BIN} ${D4J_FIXED}
+echo ">>> Done"
 # Run SpotBugs on fixed versions
-echo ">>> Running SpotBugs" && python3 ${PY_SCRIPTS_ROOT}/RunSpotbugs.py ${SB_BIN} ${D4J_FIXED} $JOBS
+echo ">>> Running SpotBugs" && python3 ${PY_SCRIPTS_ROOT}/RunSpotbugs.py ${SB_BIN} ${D4J_FIXED}
+echo ">>> Done"
