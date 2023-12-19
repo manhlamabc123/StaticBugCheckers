@@ -7,7 +7,7 @@ ENV PATH $PATH:$JAVA_HOME/bin
 
 # Install Java 8
 RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk
+    apt-get install -y openjdk-8-jdk curl subversion perl git
 
 # Install SVN, Perl, and Git
 RUN apt-get install -y subversion perl git
