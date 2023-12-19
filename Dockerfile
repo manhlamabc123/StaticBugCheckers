@@ -5,13 +5,10 @@ FROM ubuntu:22.04
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $PATH:$JAVA_HOME/bin
 
-# Install Java 8
+# Install Java 8, curl, wget, unzip, SVN, Perl, Git, Python, pip, and cpan
 RUN apt-get update && \
     apt-get install -y openjdk-8-jdk curl wget unzip subversion perl git python3 python3-pip && \
-    apt-get install -y liblocal-lib-perl
-
-# Install cpanm
-RUN curl -L https://cpanmin.us | perl - --sudo App::cpanminus
+    apt-get install -y cpanminus
 
 # Install icecream using pip
 RUN pip3 install icecream
