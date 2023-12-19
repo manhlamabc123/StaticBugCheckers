@@ -7,7 +7,7 @@ ENV PATH $PATH:$JAVA_HOME/bin
 
 # Install Java 8
 RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk curl subversion perl git
+    apt-get install -y openjdk-8-jdk curl unzip subversion perl git
 
 # Install SVN, Perl, and Git
 RUN apt-get install -y subversion perl git
@@ -17,3 +17,7 @@ WORKDIR /app
 
 # Clone the Git repository
 RUN git clone https://github.com/manhlamabc123/StaticBugCheckers
+
+RUN cd StaticBugCheckers && \
+    git clone -q https://github.com/rjust/defects4j.git && \
+    cd defects4j && ./init.sh
