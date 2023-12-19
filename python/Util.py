@@ -14,11 +14,11 @@ from xml.etree import cElementTree as ET
 from icecream import ic
 from datetime import datetime
 
-if not os.path.exists('/home/aiotlab3/RISE/Manh/StaticBugCheckers/logs'):
-    os.makedirs('/home/aiotlab3/RISE/Manh/StaticBugCheckers/logs')
+if not os.path.exists(f'{os.getcwd()}/logs'):
+    os.makedirs(f'{os.getcwd()}/logs')
 
 # Define a file to log IceCream output
-log_file_path = os.path.join('/home/aiotlab3/RISE/Manh/StaticBugCheckers/logs', 'logs.log')
+log_file_path = os.path.join(os.getcwd(), 'logs.log')
 
 # Replace logging configuration with IceCream configuration
 ic.configureOutput(prefix=f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} | ', outputFunction=lambda x: open(log_file_path, 'a').write(x + '\n'))
