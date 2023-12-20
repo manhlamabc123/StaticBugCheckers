@@ -5,16 +5,16 @@ FROM ubuntu:22.04
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $PATH:$JAVA_HOME/bin
 
+# Set the timezone (replace "America/New_York" with your desired timezone)
+ENV TZ=America/New_York
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # Install Java 8, curl, wget, unzip, SVN, Perl, Git, Python, pip, and cpan
 RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk curl wget unzip subversion perl git python3 python3-pip && \
-    apt-get install -y cpanminus
+    apt-get install -y openjdk-8-jdk curl wget unzip python3 python3-pip cpanminus subversion perl git
 
 # Install icecream using pip
 RUN pip3 install icecream
-
-# Install SVN, Perl, and Git
-RUN apt-get install -y subversion perl git
 
 # Set the working directory to /app
 WORKDIR /app
