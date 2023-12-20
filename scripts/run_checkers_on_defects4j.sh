@@ -24,25 +24,25 @@ echo ">>> Running the static checkers on the buggy versions from the Defects4j <
 cd $OUT_BUGGY
 
 # Run Error Prone on buggy versions
-echo ">>> Running Error Prone" && python3 ${PY_SCRIPTS_ROOT}/RunErrorprone.py ${EP_BIN} ${D4J_BUGGY}
-echo ">>> Done"
+# echo ">>> Running Error Prone" && python3 ${PY_SCRIPTS_ROOT}/RunErrorprone.py ${EP_BIN} ${D4J_BUGGY}
+# echo ">>> Done"
 # Run Infer on buggy versions
 echo ">>> Running Infer" && python3 ${PY_SCRIPTS_ROOT}/RunInfer.py ${INF_BIN} ${D4J_BUGGY}
 echo ">>> Done"
 # Run SpotBugs on buggy versions
-echo ">>> Running SpotBugs" && python3 ${PY_SCRIPTS_ROOT}/RunSpotbugs.py ${SB_BIN} ${D4J_BUGGY}
-echo ">>> Done"
+# echo ">>> Running SpotBugs" && python3 ${PY_SCRIPTS_ROOT}/RunSpotbugs.py ${SB_BIN} ${D4J_BUGGY}
+# echo ">>> Done"
 
 echo
 echo ">>> Running the static checkers on the fixed versions from the Defects4j <<<"
 cd $OUT_FIXED
 
 # Run Error Prone on fixed versions
-echo ">>> Running Error Prone" && python3 ${PY_SCRIPTS_ROOT}/RunErrorprone.py ${EP_BIN} ${D4J_FIXED}
+# echo ">>> Running Error Prone" && python3 ${PY_SCRIPTS_ROOT}/RunErrorprone.py ${EP_BIN} ${D4J_FIXED}
 echo ">>> Done"
 # Run Infer on fixed versions
 echo ">>> Running Infer" && python3 ${PY_SCRIPTS_ROOT}/RunInfer.py ${INF_BIN} ${D4J_FIXED}
 echo ">>> Done"
 # Run SpotBugs on fixed versions
-echo ">>> Running SpotBugs" && python3 ${PY_SCRIPTS_ROOT}/RunSpotbugs.py ${SB_BIN} ${D4J_FIXED}
-echo ">>> Done"
+# echo ">>> Running SpotBugs" && python3 ${PY_SCRIPTS_ROOT}/RunSpotbugs.py ${SB_BIN} ${D4J_FIXED}
+# echo ">>> Done"
