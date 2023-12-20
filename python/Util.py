@@ -18,7 +18,7 @@ if not os.path.exists(f'{os.getcwd()}/logs'):
     os.makedirs(f'{os.getcwd()}/logs')
 
 # Define a file to log IceCream output
-log_file_path = os.path.join(os.getcwd(), 'logs.log')
+log_file_path = os.path.join(f'{os.getcwd()}/logs', 'logs.log')
 
 # Replace logging configuration with IceCream configuration
 ic.configureOutput(prefix=f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} | ', outputFunction=lambda x: open(log_file_path, 'a').write(x + '\n'))
