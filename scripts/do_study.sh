@@ -10,8 +10,6 @@ echo "**************************************************************************
 echo "Running the study of static bug checkers and their effectiveness by Habib and Pradel [ASE2018]"
 echo "**********************************************************************************************"
 
-bash ./scripts/run_checkers_on_defects4j.sh
-
 bash ./scripts/prepare_checkers_output.sh
 
 bash ./scripts/execute_diff_based_approach.sh

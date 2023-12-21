@@ -13,8 +13,7 @@ echo ">>> Computing diffs between buggy and fixed versions in the Defects4j <<<"
 cd ${STUDY_ROOT}
 
 # Compute and serialize the differences between buggy and fixed versions using a Python script
-python3 ${PY_SCRIPTS_ROOT}/ExtractAndSerializeDiffs.py $D4J_BUGGY $D4J_FIXED > /dev/null 2>&1
-
+python3 ${PY_SCRIPTS_ROOT}/ExtractAndSerializeDiffs.py $D4J_BUGGY $D4J_FIXED
 echo
 echo ">>> Executing the Diff-based methodology: intersect diffs with flagged lines <<<"
 
