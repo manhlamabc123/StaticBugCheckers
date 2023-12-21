@@ -7,7 +7,12 @@ ENV PATH $PATH:$JAVA_HOME/bin
 
 # Install Java 8, curl, wget, unzip, SVN, Perl, Git, Python, pip, cpan, tzdata
 RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk curl wget unzip python3 python3-pip cpanminus subversion perl git tzdata
+    apt-get install -y openjdk-8-jdk curl wget unzip python3 python3-pip cpanminus subversion perl git
+
+# Install tzdata
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+RUN apt-get install -y tzdata
 
 # Install icecream using pip
 RUN pip3 install icecream
