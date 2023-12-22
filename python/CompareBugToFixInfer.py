@@ -15,11 +15,7 @@ from Util import load_parsed_inf, CustomEncoder
 
 def match_inf_msg_no_lines(msg, msgs):
     for msg2 in msgs:
-        if (msg.proj == msg2.proj and msg.cls == msg2.cls and
-            msg.bug_class == msg2.bug_class and msg.kind == msg2.kind and
-            msg.bug_type == msg2.bug_type and msg.severity == msg2.severity and
-            msg.visibility == msg2.visibility and msg.procedure == msg2.procedure):
-        
+        if (msg.proj == msg2.proj and msg.cls == msg2.cls and msg.bug_type == msg2.bug_type and msg.severity == msg2.severity and msg.procedure == msg2.procedure):
             return True
         
     return False
