@@ -189,41 +189,26 @@ InferIssue and InferBugTrace are slightly modified to cope
 with the new json format in Infer 0.15.0
 '''
 class InferIssue(object):
-#     keys = ['bug_class', 'kind', 'bug_type', 'qualifier', 'severity', 'visibility', 'line',
-#             'column', 'procedure', 'procedure_id', 'procedure_start_line', 'file', 'bug_trace',
-#             'key', 'qualifier_tags', 'hash', 'bug_type_hum']
-    keys = ['bug_class', 'kind', 'bug_type', 'qualifier', 'severity', 'visibility', 'line',
-            'column', 'procedure', 'procedure_id', 'procedure_start_line', 'file', 'bug_trace',
-            'key', 'node_key', 'hash', 'bug_type_hum']
-    def __init__(self, bug_class, kind, bug_type, qualifier, severity, visibility,
-                 line, column, procedure, procedure_id, procedure_start_line,
-                 file, bug_trace, key, qualifier_tags, hashh, bug_type_hum):
-        self.bug_class = bug_class
-        self.kind = kind
-        self.bug_type = bug_type
-        self.qualifier = qualifier
-        self.severity = severity
-        self.visibility = visibility
-        self.line = line
-        self.column = column
-        self.procedure = procedure
-        self.procedure_id = procedure_id
-        self.procedure_start_line = procedure_start_line
-        self.file = file
+    # keys = ['bug_trace', 'bug_type', 'bug_type_hum', 'column', 'file', 'hash', 'key', 'line', 'node_key', 'procedure', 'procedure_start_line', 'qualifier', 'severity']
+    keys = ['bug_trace', 'bug_type', 'bug_type_hum', 'column', 'file', 'hash', 'key', 'line', 'procedure', 'procedure_start_line', 'qualifier', 'severity']
+    def __init__(self, bug_trace, bug_type, bug_type_hum, column, file, hash, key, line, procedure, procedure_start_line, qualifier, severity):
         self.bug_trace = []
         for t in bug_trace:
             self.bug_trace.append(InferBugTrace(*list(t[k] for k in InferBugTrace.keys)))
-        self.key = key
-#         self.qualifier_tags = qualifier_tags
-        self.hashh = hashh
+        self.bug_type = bug_type
         self.bug_type_hum = bug_type_hum
+        self.column = column
+        self.file = file
+        self.hash = hash
+        self.key = key
+        self.line = line
+        # self.node_key = node_key
+        self.procedure = procedure
+        self.procedure_start_line = procedure_start_line
+        self.qualifier = qualifier
+        self.severity = severity
         
-        self.values = [self.bug_class, self.kind, self.bug_type, self.qualifier,
-                       self.severity, self.visibility, self.line, self.column,
-                       self.procedure, self.procedure_id, self.procedure_start_line,
-                        self.file, self.bug_trace, self.key, 
-#                         self.qualifier_tags,
-                       self.hashh, self.bug_type_hum]
+        self.values = [self.bug_type, self.qualifier, self.severity, self.line, self.column, self.procedure, self.procedure_start_line, self.file, self.bug_trace, self.key, self.hash, self.bug_type_hum]
         
     def __str__(self):
         return("\n" + "\n".join(k + ": " + str(v) for (k, v) in zip(InferIssue.keys, self.values)) + "\n")
@@ -232,7 +217,6 @@ class InferIssue(object):
 
 
 class InferBugTrace(object):
-#     keys = ['level', 'filename', 'line_number', 'column_number', 'description', 'node_tags']
     keys = ['level', 'filename', 'line_number', 'column_number', 'description']
     
 #     def __init__(self, level, filename, line, column, desc, tags):
@@ -256,30 +240,22 @@ class InferBugTrace(object):
 class InferMsg(object):
     keys = ['      Proj',
             '     Class',
-            ' Bug_Class',
-            '      Kind',
             '  Bug_Type',
             '       Msg',
             '  Severity',
-            'Visibility',
             '     Lines',
             ' Procedure']
 
-    def __init__(self, proj, cls, bug_class, kind, bug_type, msg,
-                 severity, visibility, lines, procedure):
+    def __init__(self, proj, cls, bug_type, msg, severity, lines, procedure):
         self.proj = proj
         self.cls = cls
-        self.bug_class = bug_class
-        self.kind = kind
         self.bug_type = bug_type
         self.msg = msg
         self.severity = severity
-        self.visibility = visibility
         self.lines = lines
         self.procedure = procedure
 
-        self.values = [self.proj, self.cls, self.bug_class, self.kind, self.bug_type, self.msg,
-                       self.severity, self.visibility, self.lines, self.procedure]
+        self.values = [self.proj, self.cls, self.bug_type, self.msg, self.severity, self.lines, self.procedure]
         
     def __str__(self):
         return("\n" + "\n".join(k + ": " + str(v) for (k, v) in zip(InferMsg.keys, self.values)))

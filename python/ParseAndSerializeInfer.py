@@ -11,20 +11,24 @@ import os
 import sys
 
 from Util import JsonDataReader, InferIssue, InferMsg, CustomEncoder, \
-                get_cls_name_from_file_path, NO_WARNING
+                get_cls_name_from_file_path, NO_WARNING, ic
 
 
 def parse_infer_json_output(proj, json_issue):
     # Case where report file is NOT empty 
     if json_issue:
-        issue = InferIssue(*list(json_issue[k] for k in InferIssue.keys))
-        cls = get_cls_name_from_file_path(issue.file) 
-        lines = extract_lines_from_issue(issue)
-        infer_msg = InferMsg(proj, cls, issue.bug_class, issue.kind, issue.bug_type, issue.qualifier,
-                             issue.severity, issue.visibility, lines, issue.procedure)
+        try:
+            issue = InferIssue(*list(json_issue[k] for k in InferIssue.keys))
+            cls = get_cls_name_from_file_path(issue.file) 
+            lines = extract_lines_from_issue(issue)
+            infer_msg = InferMsg(proj, cls, issue.bug_type, issue.qualifier, issue.severity, lines, issue.procedure)
+        except Exception as e:
+            ic(e)
+            ic(json_issue)
+            infer_msg = InferMsg(proj, "", NO_WARNING, "", "", "", "")
     # Case where report file is empty
     else:
-        infer_msg = InferMsg(proj, "", "", "", NO_WARNING, "", "", "", "", "")
+        infer_msg = InferMsg(proj, "", NO_WARNING, "", "", "", "")
     return infer_msg
     
 
